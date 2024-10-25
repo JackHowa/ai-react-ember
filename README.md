@@ -7,6 +7,11 @@
 - [ ] Ember components with only templates
 - [ ] Run ai gemini script
 
+### Todos 
+
+- [ ] Come up with a sample app. Docusign app with lots of markup might be good.
+- [ ] Update title from super rental in package.json name and other places
+
 ## Commands 
 
 `npm start` 
