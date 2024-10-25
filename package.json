@@ -5,7 +5,7 @@
   "description": "Small description for super-rental goes here",
   "repository": "",
   "license": "MIT",
-  "author": "",
+  "author": "jackhowa",
   "directories": {
     "doc": "doc",
     "test": "tests"
