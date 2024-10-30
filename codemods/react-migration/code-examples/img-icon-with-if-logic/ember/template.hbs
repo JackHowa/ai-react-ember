@@ -1,0 +1,9 @@
+<img
+  alt={{if @isCritical 'Critical Fix Icon' 'Fix Icon'}}
+  class='fix-icon'
+  src={{if
+    @isCritical
+    '/assets/svgs/fix-icon-red.svg'
+    '/assets/svgs/fix-icon.svg'
+  }}
+/>

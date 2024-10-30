@@ -1,0 +1,7 @@
+{{#if @myObject.something}}
+  <b>This Thing</b>
+{{else if (eq @myObject.thatThing 'That Thing')}}
+  <b>That Thing</b>
+{{else}}
+  <b>{{@myObject.defaultThing}}</b>
+{{/if}}
