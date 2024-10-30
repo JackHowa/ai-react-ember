@@ -1,0 +1,10 @@
+{
+  "presets": [["@babel/preset-env", { "targets": "defaults" }]],
+  "plugins": [
+    "@babel/plugin-syntax-jsx",
+    ["@babel/plugin-transform-react-jsx", { "runtime": "automatic" }],
+    "@babel/plugin-transform-react-display-name",
+    "@babel/plugin-transform-react-pure-annotations",
+    "ember-auto-import/babel-plugin"
+  ]
+}

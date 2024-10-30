@@ -1,0 +1,4 @@
+const TEMPLATE_ONLY_EMBER_COMPONENTS_WITHOUT_EMBER_CHILDREN = [];
+
+// eslint-disable-next-line no-undef
+module.exports = TEMPLATE_ONLY_EMBER_COMPONENTS_WITHOUT_EMBER_CHILDREN;
