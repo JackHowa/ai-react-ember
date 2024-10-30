@@ -18,10 +18,6 @@
 - [ ] Migrate component files as well as templates
 - [x] Migrate parent dom components
 
-## Deferred
-
-- [ ] Run cloude sonnet 3.5 -> tried but couldn't get it working in time
-
 ## Commands 
 
 1. `gcloud auth login`
