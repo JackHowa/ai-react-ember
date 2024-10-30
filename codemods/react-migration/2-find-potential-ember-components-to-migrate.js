@@ -1,8 +1,11 @@
 // packages for handling files
+// eslint-disable-next-line no-undef
 const fs = require('fs');
+// eslint-disable-next-line no-undef
 const path = require('path');
 
 // for checking hbs
+// eslint-disable-next-line no-undef
 const { parse, transform } = require('ember-template-recast');
 
 let templateOnlyEmberComponentsCount = 0;
@@ -45,6 +48,22 @@ function isAnEmberComponent(potentialEmberComponent) {
   }
 }
 
+function isAReactComponent(potentialReactComponent) {
+  const reactComponentFilename = emberComponentNameToFilename(
+    potentialReactComponent
+  );
+  const potentialReactComponentFolderPath = `app/components/${reactComponentFilename}`;
+
+  if (fs.existsSync(potentialReactComponentFolderPath)) {
+    const files = fs.readdirSync(potentialReactComponentFolderPath);
+
+    return files.includes('index.jsx');
+  } else {
+    // found folder doesn't exist like an a tag
+    return false;
+  }
+}
+
 function findMigrateableComponents(filePath) {
   // look for folder path
   if (filePath.includes('light-table')) {
@@ -64,6 +83,10 @@ function findMigrateableComponents(filePath) {
         // ignore linkto due to complications with eds
         if (isAnEmberComponent(node.tag) || node.tag === 'LinkTo') {
           isComponentMigrateableToReact = false;
+        }
+
+        if (isAReactComponent(node.tag)) {
+          isComponentMigrateableToReact = true;
         }
       },
       PathExpression(node) {

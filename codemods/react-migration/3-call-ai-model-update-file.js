@@ -1,9 +1,11 @@
 // packages for handling files
+// eslint-disable-next-line no-undef
 const fs = require('fs');
-
+// eslint-disable-next-line no-undef
 const { fetchData } = require('./utils/fetch');
 
 // import available template paths
+// eslint-disable-next-line no-undef
 const TEMPLATE_ONLY_EMBER_COMPONENTS_WITHOUT_EMBER_CHILDREN = require('./available-ember-templates-to-migrate');
 
 async function updateEmberComponents() {

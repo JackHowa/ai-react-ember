@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 const fetch = require('node-fetch');
 
 const { ACCESS_TOKEN, PROJECT_ID } = process.env || {}; // eslint-disable-line
@@ -54,7 +55,7 @@ exports.fetchData = async (inputOrig = {}) => {
 const generatePrompt = ({
   examplesArr = [],
   basePromptStr = 'Convert provided Ember component template Handlebar files to React JSX.',
-  helpfulPromptStr = `Also, no need to do 'import React from "react";' for the generated code since that's no longer requested. The name of the generated React component should be an appropriate unique one (ideally based on the filename and/or parent parent directory comment on the first line if provided) based on the provided input ember code instead of using component names from the provided examples. Do not include "jsx" or "javascript" in the output like \`\`\`jsx or \`\`\`javascript. Do not modify the names of data-* attributes.`,
+  helpfulPromptStr = `Also, no need to do 'import React from "react";' for the generated code since that's no longer requested. The name of the generated React component should be an appropriate unique one (ideally based on the filename and/or parent parent directory comment on the first line if provided) based on the provided input ember code instead of using component names from the provided examples. Do not include "jsx" or "javascript" in the output like \`\`\`jsx or \`\`\`javascript. Do not modify the names of data-* attributes. If you find an uppercase child component like <FancyButton />, try to import it like import FancyButton from '../fancy-button';. Do not try to import like FancyButton from './fancy-button';.`,
   examplePromptStr = `Here are some examples you should follow for best practices which have an Ember template Handlebar code example and its equivalent expected React component:`,
   messagesPromptStr = `Now take your time in generating exactly one React JSX for each provided Ember Handlebar template (from the request messages array field).`,
 } = {}) => {
@@ -102,7 +103,7 @@ const getRequestBody = (input = {}) => {
 const getResponse = async (data = {}) => {
   try {
     const responseBody = await data.text();
-    const response = JSON.parse(responseBody);
+    const response = JSON.parse(responseBody);    
 
     // Extract and concatenate text parts from the response
     const outputText = response

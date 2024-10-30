@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // packages for handling files
 const fs = require('fs');
 const path = require('path');
@@ -28,14 +29,6 @@ function checkAgainstActualMigrateableComponents(templateFilePath) {
     templateFilePath.includes('light-table') ||
     templateFilePath.includes('chart')
   ) {
-    // chart seems to include some library specific info
-    // breaks: renders the legend items when data is provided
-    // breaks: expands when the expand-collapse section is clicked and shows the correct button state
-
-    // light table is giving us some problems and we can't figure it out within the hackathon
-    // 'app/components/light-table/cells/badge-list/template.hbs',
-    // 'app/components/light-table/cells/context-variable/template.hbs',
-    // 'app/components/light-table/cells/notification-events-table/notification-event-name/template.hbs',
     return false;
   }
 
@@ -57,7 +50,7 @@ function writeStylesComponentFileSyncRecursive(
   baseName,
   fileContents
 ) {
-  // 2. Create scss file app/styles/components/_add-edit-assemblers-v2.scss
+  // 2. Create scss file
   const targetStylesName = 'app/styles/components/';
 
   // make directories recursively if they don't already exist
@@ -92,7 +85,7 @@ function appendNewStatementfterTargetLine(filePath, targetLine, newStatement) {
   const targetIndex = lines.findIndex((line) => line.trim() === targetLine);
 
   if (targetIndex === -1) {
-    // find a different line than `@import 'components/assembler_card_v2';`, if it doesn't exist
+    // find a different line than `@import 'components/name';`, if it doesn't exist
     console.error(`Target line "${targetLine}" not found in file.`);
     return;
   }
@@ -107,16 +100,16 @@ function appendNewStatementfterTargetLine(filePath, targetLine, newStatement) {
   fs.writeFileSync(filePath, updatedContents, 'utf-8');
 }
 
-// filePath: app/components/add-edit-assemblers-v2
+// filePath: app/components/component-name
 function createAndFillComponentStyleFile(filePath, fileContents) {
-  // 1. Update the app/styles/app.scss with component-specific file: @import 'components/add-edit-assemblers-v2';
+  // 1. Update the app/styles/app.scss with component-specific file: @import 'components/component-name
   const componentPath = filePath.replace('app/components/', '');
   const IMPORT_STATEMENT = `@import 'components/${componentPath}';`;
   const TARGET_APP_FILE_PATH = 'app/styles/app.scss';
 
   appendNewStatementfterTargetLine(
     TARGET_APP_FILE_PATH,
-    `@import 'components/assembler_card_v2';`,
+    `@import 'components/component-name';`,
     `${IMPORT_STATEMENT}`
   );
 
@@ -154,7 +147,7 @@ import { tagName } from '@ember-decorators/component';
 
 @classic
 @tagName('') // should be empty
-export default class AlertEvidenceDigSigComponent extends Component {} // should be class empty
+export default class SomethingComponent extends Component {} // should be class empty
 */
 function findEmptyComponentEmberComponent(filePath) {
   const code = fs.readFileSync(filePath, 'utf-8');
@@ -365,7 +358,6 @@ function traverseDirectory(directoryPath) {
                   generateNewStyleNamespaceClass(filePath);
 
                 // handle styles spaces if @classname decorator is used
-                // grid-table-header grid-table-header-dab85 found classnames total
                 foundClassNames = `${
                   foundClassNames ? `${foundClassNames} ` : ``
                 }${styleNamespaceClassName}`;

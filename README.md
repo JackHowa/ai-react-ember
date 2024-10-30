@@ -16,8 +16,11 @@
 ## Phase 3
 
 - [ ] Migrate component files as well as templates
-- [ ] Migrate parent dom components
-- [ ] Run cloude sonnet 3.5
+- [x] Migrate parent dom components
+
+## Deferred
+
+- [ ] Run cloude sonnet 3.5 -> tried but couldn't get it working in time
 
 ## Commands 
 

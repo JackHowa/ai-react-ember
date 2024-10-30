@@ -4,7 +4,7 @@
 // 4. Iterate through the available templates
 // 5. For each template, remove the hbs file
 // 6. For each template, write the new index.js
-
+// eslint-disable-next-line no-undef
 const fs = require('fs');
 
 let fileContents = fs.readFileSync(
@@ -31,6 +31,7 @@ const newTemplateOutputArray = fileContents
   .split('-------------------')
   .slice(1); // start at the first element because there's a starting divider
 
+// eslint-disable-next-line no-undef
 const TEMPLATE_ONLY_EMBER_COMPONENTS_WITHOUT_EMBER_CHILDREN = require('./available-ember-templates-to-migrate');
 
 for (const [
