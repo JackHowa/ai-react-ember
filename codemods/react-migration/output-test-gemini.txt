@@ -1,0 +1,32 @@
+
+Iterating through Ember templates; do not stop the process.
+Total found ember templates to convert: 2
+
+
+-------------------
+```
+import AnotherScaryContract from '../another-scary-contract';
+
+const AnotherDifferentSignContainer = () => (
+  <div className="signing-container">
+    <AnotherScaryContract />
+  </div>
+);
+
+export default AnotherDifferentSignContainer;
+
+```
+
+-------------------
+```
+import ScaryContract from '../scary-contract';
+
+const SignContainer = () => (
+  <div className="signing-container">
+    <ScaryContract />
+  </div>
+);
+
+export default SignContainer;
+
+```
