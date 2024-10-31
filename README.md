@@ -22,7 +22,7 @@
 
 1. `gcloud auth login`
 1. `export ACCESS_TOKEN="$(gcloud auth print-access-token)"`
-1. `export PROJECT_ID=""`
+1. `export PROJECT_ID=""` -> your project id from gcp
 1. `npm start`
 1. `npm run migrate:create-template-only-ember-components`
 1. `npm run migrate:find-potential-ember-components`
