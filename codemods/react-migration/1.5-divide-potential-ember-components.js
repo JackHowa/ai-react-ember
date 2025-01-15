@@ -7,6 +7,8 @@
 
 It could be easy to start with markdown only so it's 1:1 and no
 
+note: that something was moved into the children component. but we don't want to maintain that pattern of extracting migrate-able markup. four random components shouldn't be extracted just arbitrarily. put a note at the top that this was extracted for the purpose of react migration rather than that this being the best way to extract the pattern. want to help teams when components are already in react. 
+
 <div>
 	<p>SOmething</p>
 	<p>SOmething</p>
