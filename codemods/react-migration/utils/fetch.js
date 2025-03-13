@@ -107,7 +107,6 @@ const getRequestBody = (input = {}, message) => {
     ],
   };
 
-  // console.log(util.inspect(body, { showHidden: false, depth: null }));
   return body;
 };
 
