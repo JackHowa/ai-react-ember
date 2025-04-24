@@ -8,7 +8,7 @@
 const fs = require('fs');
 
 let fileContents = fs.readFileSync(
-  './codemods/react-migration/output-test-gemini.txt',
+  './codemods/react-migration/output-test.txt',
   'utf-8'
 );
 
