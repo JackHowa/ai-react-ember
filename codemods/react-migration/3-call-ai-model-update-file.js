@@ -1,29 +1,35 @@
 // packages for handling files
-// eslint-disable-next-line no-undef
 const fs = require('fs');
-// eslint-disable-next-line no-undef
+
 const { fetchData } = require('./utils/fetch');
+const { consoleC } = require('./utils/colorized-console');
 
 // import available template paths
-// eslint-disable-next-line no-undef
 const TEMPLATE_ONLY_EMBER_COMPONENTS_WITHOUT_EMBER_CHILDREN = require('./available-ember-templates-to-migrate');
 
 async function updateEmberComponents() {
   const messages = [];
   const examples = [];
 
-  console.info('Iterating through Ember templates; do not stop the process.');
+  // logging that's not needed unless you want to see output
+  // consoleC.info('Iterating through Ember templates; do not stop the process.');
   // iterate through available components from constant file
   // read the hbs file
   // then call the fetch ai command with the hbs file contents
   // get the output of the fetch ai command
+  // update the template.hbs -> index.jsx with the new contents
 
   // set messages
   for (const emberTemplatePath of TEMPLATE_ONLY_EMBER_COMPONENTS_WITHOUT_EMBER_CHILDREN) {
     const emberContents = fs.readFileSync(emberTemplatePath, 'utf8');
+    // consoleC.debug(`Updating ${emberTemplatePath} to React...`);
     messages.push(`{{!-- ${emberTemplatePath} --}}\n${emberContents}`);
+    // const reactContents = await updateFileContents(emberContents);
+
+    // updateTemplateFileNames(emberTemplatePath, reactContents);
   }
-  console.info(`Total found ember templates to convert: ${messages.length}`);
+  // show output if you want to see it
+  // consoleC.info(`Total found ember templates to convert: ${messages.length}`);
 
   // set examples
   const codeExamplesFolder = './codemods/react-migration/code-examples';
@@ -50,7 +56,12 @@ async function updateEmberComponents() {
 
   const output = await callFetch(examples, messages);
   if (output) {
+    // TODO: Break up the large output string and create individual React files (should be ordered)
     console.log(output);
+
+    // consoleC.info(
+    //   `\n\nCongrats you used a generative AI model and training data to migrate ${TEMPLATE_ONLY_EMBER_COMPONENTS_WITHOUT_EMBER_CHILDREN.length} components to React ✨⚛️`
+    // );
   }
 }
 
@@ -58,22 +69,22 @@ async function callFetch(examplesArr, messagesArr) {
   const resp = await fetchData(
     {
       examplesArr,
-      messagesArr,
+      messagesArr // Must be odd number for now!
     },
-    {}
+    { isDryRun: false, debug: false }
   );
   const { output, errors } = resp || {};
   const hasErrors = errors?.length;
 
   if (hasErrors) {
     if (output) {
-      console.info('\n\n⚠️  Partially completed.');
+      consoleC.info('\n\n⚠️  Partially completed.');
     } else {
-      console.error('\n❗Encountered errors.\n');
+      consoleC.error('\n❗Encountered errors.\n');
     }
 
     errors?.forEach((error) =>
-      console.error('Failed to complete fetch:', error)
+      consoleC.error('Failed to complete fetch:', error)
     );
   }
 

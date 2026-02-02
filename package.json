@@ -18,7 +18,7 @@
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "start": "ember serve",
+    "start": "ember serve --port=4201",
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test",
     "ai-migrate": "npm run migrate:clean && npm run migrate:create-template-only-ember-components && npm run migrate:find-potential-ember-components && npm run migrate:call-ai-model && npm run migrate:ember-components",

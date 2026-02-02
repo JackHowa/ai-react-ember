@@ -4,11 +4,11 @@
 // 4. Iterate through the available templates
 // 5. For each template, remove the hbs file
 // 6. For each template, write the new index.js
-// eslint-disable-next-line no-undef
+
 const fs = require('fs');
 
 let fileContents = fs.readFileSync(
-  './codemods/react-migration/output-test.txt',
+  './codemods/react-migration/output-ai-text.txt',
   'utf-8'
 );
 
@@ -31,12 +31,11 @@ const newTemplateOutputArray = fileContents
   .split('-------------------')
   .slice(1); // start at the first element because there's a starting divider
 
-// eslint-disable-next-line no-undef
 const TEMPLATE_ONLY_EMBER_COMPONENTS_WITHOUT_EMBER_CHILDREN = require('./available-ember-templates-to-migrate');
 
 for (const [
   index, // get index of which file is in the list
-  templateFilePath,
+  templateFilePath
 ] of TEMPLATE_ONLY_EMBER_COMPONENTS_WITHOUT_EMBER_CHILDREN.entries()) {
   // 5. For each template, remove the hbs file
   updateTemplateFileNames(templateFilePath, newTemplateOutputArray[index]);
